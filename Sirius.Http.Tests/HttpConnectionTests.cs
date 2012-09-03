@@ -25,5 +25,15 @@ namespace Sirius.Http.Tests
             HttpConnection target = new HttpConnection();
             Assert.NotNull(target.Get("http://kunzhu.co.cc"));
         }
+
+        public void TestPost()
+        {
+            /*
+             log:ariesy
+            pwd:sparky_zhk
+            rememberme:forever
+              http://kunzhu.co.cc/wordpress/wp-login.php
+             */
+        }
     }
 }

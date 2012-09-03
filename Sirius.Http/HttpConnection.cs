@@ -36,6 +36,7 @@ namespace Sirius.Http
             try
             {
                 HttpWebRequest request = null;
+                request.CookieContainer = _cookies;
                 request = HttpWebRequest.Create(url) as HttpWebRequest;
                 var response = request.GetResponse() as HttpWebResponse;
                 return response.GetResponseStream();
@@ -44,8 +45,29 @@ namespace Sirius.Http
             {
                 return null;
             }
+        }
 
-            return null;
+        public Stream Post(string url, object PostData)
+        {
+            try
+            {
+                HttpWebRequest request = null;
+                request.CookieContainer = _cookies;
+                request = HttpWebRequest.Create(url) as HttpWebRequest;
+                request.Method = "POST";
+                using (var requestStream = request.GetRequestStream())
+                {
+                    StreamWriter sw = new StreamWriter(requestStream);
+                    sw.Write(PostData);
+                }
+
+                var response = request.GetResponse() as HttpWebResponse;
+                return response.GetResponseStream();
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
