@@ -36,8 +36,9 @@ namespace Sirius.Http
             try
             {
                 HttpWebRequest request = null;
-                request.CookieContainer = _cookies;
                 request = HttpWebRequest.Create(url) as HttpWebRequest;
+                request.CookieContainer = _cookies;
+                request.KeepAlive = true;
                 var response = request.GetResponse() as HttpWebResponse;
                 return response.GetResponseStream();
             }
@@ -52,9 +53,11 @@ namespace Sirius.Http
             try
             {
                 HttpWebRequest request = null;
-                request.CookieContainer = _cookies;
                 request = HttpWebRequest.Create(url) as HttpWebRequest;
+                request.CookieContainer = _cookies;
                 request.Method = "POST";
+                request.KeepAlive = true;
+                request.AllowAutoRedirect = true;
                 using (var requestStream = request.GetRequestStream())
                 {
                     StreamWriter sw = new StreamWriter(requestStream);
@@ -62,10 +65,13 @@ namespace Sirius.Http
                 }
 
                 var response = request.GetResponse() as HttpWebResponse;
+                response.Cookies = request.CookieContainer.GetCookies(request.RequestUri);
+                string strcrook = request.CookieContainer.GetCookieHeader(request.RequestUri);
                 return response.GetResponseStream();
             }
-            catch
+            catch(Exception e)
             {
+                var s = e.Message;
                 return null;
             }
         }
