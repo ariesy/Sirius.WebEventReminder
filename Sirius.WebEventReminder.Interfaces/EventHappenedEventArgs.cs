@@ -11,5 +11,8 @@ namespace Sirius.WebEventReminder.Interfaces
     /// </summary>
     public class EventHappenedEventArgs
     {
+        public string Message { get; set; }
+
+        public object Data { get; set; }
     }
 }
