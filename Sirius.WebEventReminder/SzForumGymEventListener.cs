@@ -7,8 +7,10 @@
 using System.ComponentModel;
 using System.IO;
 using System.Threading;
+using HtmlAgilityPack;
 using Sirius.Http;
 using Sirius.WebEventReminder.Interfaces;
+using Timer = System.Threading.Timer;
 
 namespace Sirius.WebEventReminder
 {
@@ -26,9 +28,14 @@ namespace Sirius.WebEventReminder
 
         public void Listen()
         {
-            AutoResetEvent autoEvent     = new AutoResetEvent(false);
-            Timer timer = new Timer(CheckPost, autoEvent, 1000 * 60 * 15, 1000 * 60 * 15);
-            autoEvent.WaitOne();
+            HtmlWeb web = new HtmlWeb();
+            var doc = web.Load("http://szforum/viewforum.php?f=31");
+            var posts = doc.DocumentNode.SelectNodes("//ul[@class='topiclist topics']")[1];
+            var postCount = posts.ChildNodes.Count;
+
+            //AutoResetEvent autoEvent     = new AutoResetEvent(false);
+            //Timer timer = new Timer(CheckPost, autoEvent, 1000 * 60 * 15, 1000 * 60 * 15);
+            //autoEvent.WaitOne();
 
             //BackgroundWorker worker = new BackgroundWorker();
             //worker.DoWork += WorkerDoWork;
@@ -36,17 +43,16 @@ namespace Sirius.WebEventReminder
 
         private void CheckPost(object state)
         {
-            var s = "1";
         }
 
         private void WorkerDoWork(object sender, DoWorkEventArgs e)
         {
             HttpConnection connection = new HttpConnection();
+            HtmlDocument doc = new HtmlDocument();
             using (Stream responseStream = connection.Get("http://szforum/viewforum.php?f=31"))
             {
                 StreamReader reader = new StreamReader(responseStream);
-                reader.ReadToEnd();
-                EventHappenedEventArgs eventArgs = new EventHappenedEventArgs();
+                doc.LoadHtml(reader.ReadToEnd());
             }
         }
     }
