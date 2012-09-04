@@ -30,8 +30,6 @@ namespace Sirius.Http.Tests
                 var s = reader.ReadToEnd();
                 Assert.NotNull(s);
             }
-            
-            
         }
 
         [Test]
@@ -39,7 +37,7 @@ namespace Sirius.Http.Tests
         {
             HttpConnection target = new HttpConnection();
 
-            using (var stream = target.Post("http://kunzhu.co.cc/wordpress/wp-login.php", "log=ariesy&pwd=sparky_zhk&remeberme=forever&wp-submit=登录&redirect_to=http://kunzhu.co.cc/wordpress/wp-admin/"))
+            using (var stream = target.Post("",""))
             {
                 StreamReader sr = new StreamReader(stream);
                 var s = sr.ReadToEnd();

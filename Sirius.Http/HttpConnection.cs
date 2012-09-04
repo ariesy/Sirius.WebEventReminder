@@ -55,9 +55,14 @@ namespace Sirius.Http
                 HttpWebRequest request = null;
                 request = HttpWebRequest.Create(url) as HttpWebRequest;
                 request.CookieContainer = _cookies;
+                var cookie = new Cookie("wordpress_test_cookie", "WP+Cookie+check");
+                cookie.Domain = "Kunzhu.co.cc";
+                request.CookieContainer.Add(cookie);
                 request.Method = "POST";
                 request.KeepAlive = true;
-                request.AllowAutoRedirect = true;
+                request.AllowAutoRedirect = false;
+                request.UserAgent =
+                    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.8 (KHTML, like Gecko) Chrome/23.0.1251.2 Safari/537.8";
                 using (var requestStream = request.GetRequestStream())
                 {
                     StreamWriter sw = new StreamWriter(requestStream);
@@ -65,8 +70,6 @@ namespace Sirius.Http
                 }
 
                 var response = request.GetResponse() as HttpWebResponse;
-                response.Cookies = request.CookieContainer.GetCookies(request.RequestUri);
-                string strcrook = request.CookieContainer.GetCookieHeader(request.RequestUri);
                 return response.GetResponseStream();
             }
             catch(Exception e)
