@@ -29,6 +29,9 @@ namespace Sirius.WebEventReminder
         {
             Timer timer = new Timer(60 * 1000 * 15);
             timer.Elapsed += TimerElapsed;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+            
         }
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)

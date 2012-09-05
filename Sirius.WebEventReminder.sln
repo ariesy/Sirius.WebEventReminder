@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirius.WebEventReminder.Winform", "Sirius.WebEventReminder.Winform\Sirius.WebEventReminder.Winform.csproj", "{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirius.WebEventReminder", "Sirius.WebEventReminder\Sirius.WebEventReminder.csproj", "{731BAAAE-BE33-4E50-9060-77409AE2A4E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirius.WebEventReminder.Tests", "Sirius.WebEventReminder.Tests\Sirius.WebEventReminder.Tests.csproj", "{418B1205-EBBB-43A6-875D-6E2624545327}"
@@ -16,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{35E93A
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirius.WebEventReminder.BackendService", "Sirius.WebEventReminder.BackendService\Sirius.WebEventReminder.BackendService.csproj", "{97083301-8952-4021-84CD-F35DEC036D3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,16 +26,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}.Debug|x86.Build.0 = Debug|Any CPU
-		{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}.Release|Any CPU.ActiveCfg = Release|x86
-		{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}.Release|Mixed Platforms.Build.0 = Release|x86
-		{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}.Release|x86.ActiveCfg = Release|x86
-		{0C20FD03-B62F-4C58-9A8B-212AB62CC87B}.Release|x86.Build.0 = Release|x86
 		{731BAAAE-BE33-4E50-9060-77409AE2A4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{731BAAAE-BE33-4E50-9060-77409AE2A4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{731BAAAE-BE33-4E50-9060-77409AE2A4E0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -69,6 +59,16 @@ Global
 		{B21DF71B-5D65-422B-9DD9-49D2A4113E23}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B21DF71B-5D65-422B-9DD9-49D2A4113E23}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B21DF71B-5D65-422B-9DD9-49D2A4113E23}.Release|x86.ActiveCfg = Release|Any CPU
+		{97083301-8952-4021-84CD-F35DEC036D3E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{97083301-8952-4021-84CD-F35DEC036D3E}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{97083301-8952-4021-84CD-F35DEC036D3E}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{97083301-8952-4021-84CD-F35DEC036D3E}.Debug|x86.ActiveCfg = Debug|x86
+		{97083301-8952-4021-84CD-F35DEC036D3E}.Debug|x86.Build.0 = Debug|x86
+		{97083301-8952-4021-84CD-F35DEC036D3E}.Release|Any CPU.ActiveCfg = Release|x86
+		{97083301-8952-4021-84CD-F35DEC036D3E}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{97083301-8952-4021-84CD-F35DEC036D3E}.Release|Mixed Platforms.Build.0 = Release|x86
+		{97083301-8952-4021-84CD-F35DEC036D3E}.Release|x86.ActiveCfg = Release|x86
+		{97083301-8952-4021-84CD-F35DEC036D3E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
