@@ -2,20 +2,18 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{97083301-8952-4021-84CD-F35DEC036D3E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{C8E43152-4223-44A1-991D-02B9EA655E64}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sirius.WebEventReminder.BackendService</RootNamespace>
-    <AssemblyName>Sirius.WebEventReminder.BackendService</AssemblyName>
+    <RootNamespace>Sirius.WebEventReminder.MessageQueue.Interface</RootNamespace>
+    <AssemblyName>Sirius.WebEventReminder.MessageQueue.Interface</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,8 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,22 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="IMessageQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sirius.WebEventReminder.Interfaces\Sirius.WebEventReminder.Interfaces.csproj">
-      <Project>{B21DF71B-5D65-422B-9DD9-49D2A4113E23}</Project>
-      <Name>Sirius.WebEventReminder.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sirius.WebEventReminder.MessageQueue.Interface\Sirius.WebEventReminder.MessageQueue.Interface.csproj">
-      <Project>{C8E43152-4223-44A1-991D-02B9EA655E64}</Project>
-      <Name>Sirius.WebEventReminder.MessageQueue.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sirius.WebEventReminder\Sirius.WebEventReminder.csproj">
-      <Project>{731BAAAE-BE33-4E50-9060-77409AE2A4E0}</Project>
-      <Name>Sirius.WebEventReminder</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

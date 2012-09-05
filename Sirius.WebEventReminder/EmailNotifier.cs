@@ -21,7 +21,7 @@ namespace Sirius.WebEventReminder
             }
         }
 
-        public void SendNotification(EventHappenedEventArgs eventArgs)
+        public void SendNotification(object sender, EventHappenedEventArgs eventArgs)
         {
             MailMessage msg = new MailMessage();
             msg.From = new MailAddress(_fromAddr);

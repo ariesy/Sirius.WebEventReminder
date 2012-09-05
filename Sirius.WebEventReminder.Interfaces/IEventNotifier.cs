@@ -7,6 +7,6 @@ namespace Sirius.WebEventReminder.Interfaces
 {
     public interface IEventNotifier
     {
-        void SendNotification(EventHappenedEventArgs eventArgs);
+        void SendNotification(object sender, EventHappenedEventArgs eventArgs);
     }
 }
