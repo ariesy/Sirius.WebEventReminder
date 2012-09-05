@@ -37,16 +37,27 @@ namespace Sirius.WebEventReminder
         private void TimerElapsed(object sender, ElapsedEventArgs e)
         {
             HtmlWeb web = new HtmlWeb();
-            var doc = web.Load("http://szforum/viewforum.php?f=31");
-            var posts = doc.DocumentNode.SelectNodes("//ul[@class='topiclist topics']")[1];
-            var postCount = posts.SelectNodes("li").Count;
-            if (postCount != currentPostCount)
+            try
             {
-                currentPostCount = postCount;
+                var doc = web.Load("http://szforum/viewforum.php?f=31");
+                var posts = doc.DocumentNode.SelectNodes("//ul[@class='topiclist topics']")[1];
+                var postCount = posts.SelectNodes("li").Count;
+
+                if (postCount != currentPostCount)
+                {
+                    currentPostCount = postCount;
+                    if (EventHapped != null)
+                    {
+                        var eventArgs = new EventHappenedEventArgs { Message = "New Post!" };
+                        EventHapped(this, eventArgs);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
                 if (EventHapped != null)
                 {
-                    var eventArgs = new EventHappenedEventArgs { Message = "New Post!" };
-                    EventHapped(this, eventArgs);
+                    EventHapped(this, new EventHappenedEventArgs { Message = ex.Message });
                 }
             }
         }
