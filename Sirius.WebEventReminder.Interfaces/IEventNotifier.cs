@@ -5,8 +5,12 @@ using System.Text;
 
 namespace Sirius.WebEventReminder.Interfaces
 {
-    public interface IEventNotifier
+    public interface IEventNotifier<TReciever>
     {
         void SendNotification(object sender, EventHappenedEventArgs eventArgs);
+
+        void Register(TReciever reciever);
+
+        void Unregister(TReciever reciever);
     }
 }

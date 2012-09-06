@@ -15,7 +15,7 @@ namespace Sirius.WebEventReminder.Tests
         public void TestSendNotification()
         {
             var target = new EmailNotifier();
-            target.RegisterEmailAddress("ariesyzhk@gmail.com");
+            target.Register("ariesyzhk@gmail.com");
             Assert.DoesNotThrow(() =>
                 {
                     target.SendNotification(new EventHappenedEventArgs { Message = "test" });

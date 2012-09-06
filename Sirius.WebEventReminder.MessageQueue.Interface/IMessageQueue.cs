@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Sirius.WebEventReminder.MessageQueue.Interface
+namespace Sirius.WebEventReminder.Messaging.Interfaces
 {
     public interface IMessageQueue<TItem>
     {

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sirius.WebEventReminder.Interfaces;
-using Sirius.WebEventReminder.MessageQueue.Interface;
+using Sirius.WebEventReminder.Messaging.Interfaces;
 
 namespace Sirius.WebEventReminder.BackendService
 {
     class Program
     {
-        private static IEventNotifier _notifier;
+        private static IEventNotifier<string> _notifier;
 
         static void Main(string[] args)
         {
@@ -25,8 +25,7 @@ namespace Sirius.WebEventReminder.BackendService
 
         static void MessageQueue_OnEnqueue(string emailAddress)
         {
-            var emailNotifier = _notifier as EmailNotifier;
-            emailNotifier.RegisterEmailAddress(emailAddress);
+            _notifier.Register(emailAddress);
         }
 
         static void Listener_EventHapped(object sender, EventHappenedEventArgs eventArgs)

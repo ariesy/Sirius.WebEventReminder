@@ -7,19 +7,11 @@ using Sirius.WebEventReminder.Interfaces;
 
 namespace Sirius.WebEventReminder
 {
-    public class EmailNotifier : IEventNotifier
+    public class EmailNotifier : IEventNotifier<string>
     {
         private HashSet<string> _emailAddr = new HashSet<string>();
 
         private string _fromAddr = "Kun.zhu@moodys.com";
-
-        public void RegisterEmailAddress(string emailAddr)
-        {
-            if (!_emailAddr.Contains(emailAddr))
-            {
-                _emailAddr.Add(emailAddr);
-            }
-        }
 
         public void SendNotification(object sender, EventHappenedEventArgs eventArgs)
         {
@@ -45,6 +37,22 @@ namespace Sirius.WebEventReminder
                 //TODO: handle exception.
                 string s = e.Message;
                 Console.Write(s);
+            }
+        }
+
+        public void Register(string reciever)
+        {
+            if (!_emailAddr.Contains(reciever))
+            {
+                _emailAddr.Add(reciever);
+            }
+        }
+
+        public void Unregister(string reciever)
+        {
+            if (_emailAddr.Contains(reciever))
+            {
+                _emailAddr.Remove(reciever);
             }
         }
     }
