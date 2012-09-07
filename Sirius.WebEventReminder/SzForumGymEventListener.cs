@@ -9,6 +9,7 @@ using System.IO;
 using System.Timers;
 using HtmlAgilityPack;
 using Sirius.WebEventReminder.Interfaces;
+using Sirius.Common.Extensions;
 
 namespace Sirius.WebEventReminder
 {
@@ -16,6 +17,7 @@ namespace Sirius.WebEventReminder
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Configuration;
 
     /// <summary>
     /// TODO: Update summary.
@@ -27,7 +29,8 @@ namespace Sirius.WebEventReminder
 
         public void Listen()
         {
-            Timer timer = new Timer(60 * 1000 * 15);
+            int interval = ConfigurationManager.AppSettings["ListenerInterval"].ToInt(20 * 60);
+            Timer timer = new Timer(interval * 1000);
             timer.Elapsed += TimerElapsed;
             timer.AutoReset = true;
             timer.Enabled = true;

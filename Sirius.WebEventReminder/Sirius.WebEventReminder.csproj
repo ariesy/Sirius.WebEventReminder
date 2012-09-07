@@ -37,6 +37,7 @@
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -51,9 +52,14 @@
     <Compile Include="SzForumGymEventListener.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sirius.Framework\Sirius.Common\Sirius.Common.csproj">
+      <Project>{EDA71828-B087-478C-B5FB-E51087E72883}</Project>
+      <Name>Sirius.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sirius.WebEventReminder.Interfaces\Sirius.WebEventReminder.Interfaces.csproj">
       <Project>{B21DF71B-5D65-422B-9DD9-49D2A4113E23}</Project>
       <Name>Sirius.WebEventReminder.Interfaces</Name>

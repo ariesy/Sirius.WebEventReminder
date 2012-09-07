@@ -36,7 +36,7 @@ namespace Sirius.WebEventReminder
             {
                 //TODO: handle exception.
                 string s = e.Message;
-                Console.Write(s);
+                Console.WriteLine(s + ":" + string.Join(",", _emailAddr.ToArray()));
             }
         }
 
