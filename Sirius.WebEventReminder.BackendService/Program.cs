@@ -15,7 +15,7 @@ namespace Sirius.WebEventReminder.BackendService
         {
             IEventListener listener = new SzForumGymEventListener();
             IMessageQueue messageQueue = null;
-            messageQueue.OnEnqueue += MessageQueue_OnEnqueue;
+            //messageQueue.OnEnqueue += MessageQueue_OnEnqueue;
             listener.Listen();
             listener.EventHapped += Listener_EventHapped;
             listener.EventHapped += _notifier.SendNotification;
