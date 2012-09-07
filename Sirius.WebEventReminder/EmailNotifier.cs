@@ -7,7 +7,7 @@ using Sirius.WebEventReminder.Interfaces;
 
 namespace Sirius.WebEventReminder
 {
-    public class EmailNotifier : IEventNotifier<string>
+    public class EmailNotifier : IEventNotifier
     {
         private HashSet<string> _emailAddr = new HashSet<string>();
 
@@ -40,19 +40,29 @@ namespace Sirius.WebEventReminder
             }
         }
 
-        public void Register(string reciever)
+        public void Register(object reciever)
         {
-            if (!_emailAddr.Contains(reciever))
+            if (reciever == null)
             {
-                _emailAddr.Add(reciever);
+                return;
+            }
+
+            if (!_emailAddr.Contains(reciever.ToString()))
+            {
+                _emailAddr.Add(reciever.ToString());
             }
         }
 
-        public void Unregister(string reciever)
+        public void Unregister(object reciever)
         {
-            if (_emailAddr.Contains(reciever))
+            if (reciever == null)
             {
-                _emailAddr.Remove(reciever);
+                return;
+            }
+
+            if (_emailAddr.Contains(reciever.ToString()))
+            {
+                _emailAddr.Remove(reciever.ToString());
             }
         }
     }

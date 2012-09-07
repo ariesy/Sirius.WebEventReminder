@@ -18,7 +18,7 @@ namespace Sirius.WebEventReminder.Tests
             target.Register("ariesyzhk@gmail.com");
             Assert.DoesNotThrow(() =>
                 {
-                    target.SendNotification(new EventHappenedEventArgs { Message = "test" });
+                    target.SendNotification(null, new EventHappenedEventArgs { Message = "test" });
                 });
         }
     }

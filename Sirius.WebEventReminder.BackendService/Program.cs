@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sirius.WebEventReminder.Interfaces;
-using Sirius.WebEventReminder.Messaging.Interfaces;
+using Sirius.Messaging.Interfaces;
 
 namespace Sirius.WebEventReminder.BackendService
 {
     class Program
     {
-        private static IEventNotifier<string> _notifier;
+        private static IEventNotifier _notifier;
 
         static void Main(string[] args)
         {
             IEventListener listener = new SzForumGymEventListener();
-            IMessageQueue<string> messageQueue;
+            IMessageQueue messageQueue = null;
             messageQueue.OnEnqueue += MessageQueue_OnEnqueue;
             listener.Listen();
             listener.EventHapped += Listener_EventHapped;
@@ -23,9 +23,9 @@ namespace Sirius.WebEventReminder.BackendService
             Console.ReadLine();
         }
 
-        static void MessageQueue_OnEnqueue(string emailAddress)
+        static void MessageQueue_OnEnqueue(object emailAddress)
         {
-            _notifier.Register(emailAddress);
+            _notifier.Register(emailAddress.ToString());
         }
 
         static void Listener_EventHapped(object sender, EventHappenedEventArgs eventArgs)
