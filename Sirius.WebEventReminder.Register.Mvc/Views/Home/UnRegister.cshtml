@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "UnRegister";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UnRegister</h2>
+@if (ViewBag.Unregister)
+{
+    <p>Unregister succeed!</p>
+    @Html.ActionLink("Back", "Unregister");
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.TextBox("email");
+        <input type="submit" value="Unregister" /> 
+    } 
+    
+}

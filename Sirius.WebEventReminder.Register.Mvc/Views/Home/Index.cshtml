@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "主页";
+}
+
+<h2>@ViewBag.Message</h2>
+
+@using (Html.BeginForm("Register", "Home")){
+<p>
+    @Html.TextBox("email")
+</p>
+<p>
+    <input type="submit" value="Register" />
+</p>
+}
