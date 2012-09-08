@@ -13,6 +13,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -54,6 +56,15 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,13 +78,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sirius.Framework\Sirius.Common\Sirius.Common.csproj">
+      <Project>{EDA71828-B087-478C-B5FB-E51087E72883}</Project>
+      <Name>Sirius.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sirius.Framework\Sirius.Messaging.Data.Interfaces\Sirius.Messaging.Data.Interfaces.csproj">
+      <Project>{BCAC4A97-94B3-48EA-8B3E-D2C75F34037F}</Project>
+      <Name>Sirius.Messaging.Data.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sirius.Framework\Sirius.Messaging.Interfaces\Sirius.Messaging.Interfaces.csproj">
       <Project>{C8E43152-4223-44A1-991D-02B9EA655E64}</Project>
       <Name>Sirius.Messaging.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sirius.Framework\Sirius.Messaging.SqlCe\Sirius.Messaging.SqlCe.csproj">
-      <Project>{F6E51A79-6E2E-4CA8-A640-50B54C85CB9A}</Project>
-      <Name>Sirius.Messaging.SqlCe</Name>
+    <ProjectReference Include="..\Sirius.Framework\Sirius.Messaging\Sirius.Messaging.csproj">
+      <Project>{D3230EDE-4A93-4054-B8F4-72DAC86D0C1A}</Project>
+      <Name>Sirius.Messaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sirius.WebEventReminder.Interfaces\Sirius.WebEventReminder.Interfaces.csproj">
       <Project>{B21DF71B-5D65-422B-9DD9-49D2A4113E23}</Project>
@@ -86,8 +105,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Sirius.Common.Ioc;
 using Sirius.WebEventReminder.Interfaces;
 using Sirius.Messaging.Interfaces;
-using Sirius.Messaging.SqlCe;
+using Sirius.Messaging;
 
 namespace Sirius.WebEventReminder.BackendService
 {
@@ -14,12 +15,14 @@ namespace Sirius.WebEventReminder.BackendService
 
         static void Main(string[] args)
         {
+            IocContainer.Current.LoadConfiguration();
             IEventListener listener = new SzForumGymEventListener();
-            IMessageQueueServer messageQueueServer = new SqlCeMessageQueueServer();
+            IMessageQueueServer messageQueueServer = new MessageQueueServer();
             _notifier = new EmailNotifier();
             messageQueueServer.ItemsEnqued += new Action<List<IMessage>>(messageQueueServer_ItemsEnqued);
-            IMessageQueue messageQueue = new SqlCeMessageQueue();
-            messageQueue.Enqueue("ariesyzhk@gmail.com");
+            IMessageQueue messageQueue = new MessageQueue();
+            CommonMessage message = new CommonMessage { MessageBody = "ariesyzhk@gmail.com" };
+            messageQueue.Enqueue(message);
             listener.Listen();
             listener.EventHapped += Listener_EventHapped;
             listener.EventHapped += _notifier.SendNotification;
