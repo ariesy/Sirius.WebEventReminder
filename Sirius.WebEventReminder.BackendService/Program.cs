@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sirius.Common.Ioc;
-using Sirius.WebEventReminder.Interfaces;
-using Sirius.Messaging.Interfaces;
+using Sirius.WebEventReminder;
 using Sirius.Messaging;
 
 namespace Sirius.WebEventReminder.BackendService

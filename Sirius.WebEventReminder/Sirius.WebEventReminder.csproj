@@ -49,6 +49,9 @@
   <ItemGroup>
     <Compile Include="DomainList.cs" />
     <Compile Include="EmailNotifier.cs" />
+    <Compile Include="EventHappenedEventArgs.cs" />
+    <Compile Include="IEventListener.cs" />
+    <Compile Include="IEventNotifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SzForumGymEventListener.cs" />
   </ItemGroup>
@@ -60,10 +63,6 @@
     <ProjectReference Include="..\Sirius.Framework\Sirius.Common\Sirius.Common.csproj">
       <Project>{EDA71828-B087-478C-B5FB-E51087E72883}</Project>
       <Name>Sirius.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sirius.WebEventReminder.Interfaces\Sirius.WebEventReminder.Interfaces.csproj">
-      <Project>{B21DF71B-5D65-422B-9DD9-49D2A4113E23}</Project>
-      <Name>Sirius.WebEventReminder.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

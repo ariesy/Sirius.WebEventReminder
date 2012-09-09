@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Timers;
 using HtmlAgilityPack;
-using Sirius.WebEventReminder.Interfaces;
+using Sirius.WebEventReminder;
 using Sirius.Common.Extensions;
 
 namespace Sirius.WebEventReminder

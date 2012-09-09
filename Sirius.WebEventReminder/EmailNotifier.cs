@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
-using Sirius.WebEventReminder.Interfaces;
 using System.Net;
 using System.IO;
 
