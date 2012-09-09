@@ -12,6 +12,7 @@ namespace Sirius.WebEventReminder.BackendService
     class Program
     {
         private static IEventNotifier _notifier;
+        private static List<IMessageQueueServer> _msgQueueServers = new List<IMessageQueueServer>();
 
         static void Main(string[] args)
         {
@@ -19,10 +20,13 @@ namespace Sirius.WebEventReminder.BackendService
             
             IMessageQueueServer gymMessageQueueServer = new MessageQueueServer(DomainList.Gym);
             IMessageQueueServer badmintonMessageQueueServer = new MessageQueueServer(DomainList.Badminton);
+            _msgQueueServers.Add(gymMessageQueueServer);
+            _msgQueueServers.Add(badmintonMessageQueueServer);
 
             _notifier = new EmailNotifier();
 
             gymMessageQueueServer.ItemsEnqued += new Action<List<IMessage>>(messageQueueServer_ItemsEnqued);
+            gymMessageQueueServer.ItemDequeued += new Action<List<IMessage>>(gymMessageQueueServer_ItemDequeued);
 
             IEventListener listener = new SzForumGymEventListener();
             listener.Listen();
@@ -31,6 +35,23 @@ namespace Sirius.WebEventReminder.BackendService
             gymMessageQueueServer.Start();
             Console.WriteLine("Press the Enter key to exit the program.");
             Console.ReadLine();
+            Stop();
+        }
+
+        static void gymMessageQueueServer_ItemDequeued(List<IMessage> deletedMsgs)
+        {
+            foreach (var msg in deletedMsgs)
+            {
+                _notifier.Unregister(msg.MessageBody);
+            }
+        }
+
+        private static void Stop()
+        {
+            foreach (var server in _msgQueueServers)
+            {
+                server.Stop();
+            }
         }
 
         static void messageQueueServer_ItemsEnqued(List<IMessage> messages)

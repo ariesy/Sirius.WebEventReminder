@@ -51,7 +51,7 @@ namespace Sirius.WebEventReminder
                     currentPostCount = postCount;
                     if (EventHapped != null)
                     {
-                        var eventArgs = new EventHappenedEventArgs { Message = "New Post!" };
+                        var eventArgs = new EventHappenedEventArgs { Message = "New Post of gym club!" };
                         EventHapped(this, eventArgs);
                     }
                 }
