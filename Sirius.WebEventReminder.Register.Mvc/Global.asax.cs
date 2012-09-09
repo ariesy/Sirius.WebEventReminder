@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Sirius.Common.Ioc;
+using System.Diagnostics;
+using System.IO;
 
 namespace Sirius.WebEventReminder.Register.Mvc
 {
@@ -31,6 +33,7 @@ namespace Sirius.WebEventReminder.Register.Mvc
 
         protected void Application_Start()
         {
+            //Process.Start(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"bin", "Sirius.WebEventReminder.BackendService.exe"));
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
