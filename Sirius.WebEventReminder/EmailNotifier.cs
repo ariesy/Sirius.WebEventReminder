@@ -5,14 +5,13 @@ using System.Net.Mail;
 using System.Text;
 using Sirius.WebEventReminder.Interfaces;
 using System.Net;
+using System.IO;
 
 namespace Sirius.WebEventReminder
 {
     public class EmailNotifier : IEventNotifier
     {
         private HashSet<string> _emailAddr = new HashSet<string>();
-
-        private string _fromAddr = "dev@kunzhu.co.cc";
 
         public void SendNotification(object sender, EventHappenedEventArgs eventArgs)
         {
@@ -23,14 +22,25 @@ namespace Sirius.WebEventReminder
             }
 
             MailMessage msg = new MailMessage();
-            msg.From = new MailAddress(_fromAddr);
+            msg.From = new MailAddress("dev@kunzhu.co.cc", "Kun Zhu");
 
             foreach (var address in _emailAddr)
             {
                 msg.To.Add(address);
             }
 
-            msg.Body = eventArgs.Message;
+            StringWriter msgBodyWriter = new StringWriter();
+            msgBodyWriter.WriteLine(eventArgs.Message);
+            msgBodyWriter.WriteLine();
+            msgBodyWriter.WriteLine("--------------------------------");
+            msgBodyWriter.WriteLine("I'm glad that my service can help you.");
+            msgBodyWriter.WriteLine("If there's any question feel free to send me email: ariesyzhk@gmail.com");
+            msgBodyWriter.WriteLine("More interesting things can be found at my technique blog: http://kunzhu.co.cc");
+            msgBodyWriter.WriteLine("and my code repository: https://github.com/ariesy");
+
+            msg.Body = msgBodyWriter.ToString();
+            msg.ReplyToList.Add(new MailAddress("ariesyzhk@gmail.com","Kun Zhu"));
+
             msg.Subject = eventArgs.Message;
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Host = "smtp.gmail.com";
