@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using Sirius.WebEventReminder.Interfaces;
+using System.Net;
 
 namespace Sirius.WebEventReminder
 {
@@ -32,11 +33,17 @@ namespace Sirius.WebEventReminder
             msg.Body = eventArgs.Message;
             msg.Subject = eventArgs.Message;
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Host = "localhost";
+            smtpClient.Host = "smtp.gmail.com";
+            smtpClient.Port = 587;
+            smtpClient.EnableSsl = true;
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential("dev@kunzhu.co.cc", "dev.public");
             
             try
             {
                 smtpClient.Send(msg);
+                Console.WriteLine("Succeed:" + string.Join(",", _emailAddr.ToArray()));
             }
             catch (Exception e)
             {
