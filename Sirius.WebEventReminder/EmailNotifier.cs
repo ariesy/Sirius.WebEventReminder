@@ -15,6 +15,12 @@ namespace Sirius.WebEventReminder
 
         public void SendNotification(object sender, EventHappenedEventArgs eventArgs)
         {
+            if (_emailAddr.Count == 0)
+            {
+                Console.WriteLine("No register");
+                return;
+            }
+
             MailMessage msg = new MailMessage();
             msg.From = new MailAddress(_fromAddr);
 
