@@ -151,7 +151,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Shared\_NavigatorPartial.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -163,6 +165,14 @@
       <Project>{EDA71828-B087-478C-B5FB-E51087E72883}</Project>
       <Name>Sirius.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sirius.Framework\Sirius.Messaging.Data.Interfaces\Sirius.Messaging.Data.Interfaces.csproj">
+      <Project>{BCAC4A97-94B3-48EA-8B3E-D2C75F34037F}</Project>
+      <Name>Sirius.Messaging.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sirius.Framework\Sirius.Messaging.Data.SqlCe\Sirius.Messaging.Data.SqlCe.csproj">
+      <Project>{F6E51A79-6E2E-4CA8-A640-50B54C85CB9A}</Project>
+      <Name>Sirius.Messaging.Data.SqlCe</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sirius.Framework\Sirius.Messaging.Interfaces\Sirius.Messaging.Interfaces.csproj">
       <Project>{C8E43152-4223-44A1-991D-02B9EA655E64}</Project>
       <Name>Sirius.Messaging.Interfaces</Name>
@@ -170,6 +180,10 @@
     <ProjectReference Include="..\Sirius.Framework\Sirius.Messaging\Sirius.Messaging.csproj">
       <Project>{D3230EDE-4A93-4054-B8F4-72DAC86D0C1A}</Project>
       <Name>Sirius.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sirius.WebEventReminder\Sirius.WebEventReminder.csproj">
+      <Project>{731BAAAE-BE33-4E50-9060-77409AE2A4E0}</Project>
+      <Name>Sirius.WebEventReminder</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

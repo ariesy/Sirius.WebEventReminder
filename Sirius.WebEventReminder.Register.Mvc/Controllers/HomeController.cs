@@ -18,16 +18,16 @@ namespace Sirius.WebEventReminder.Register.Mvc.Controllers
             return View();
         }
 
-        public ActionResult Register(string email)
+        public ActionResult Register(string email, string domain)
         {
-            IMessage message = new CommonMessage { MessageBody = email };
+            IMessage message = new CommonMessage { MessageBody = email, Domain = domain };
             IMessageQueue msgQueue = new MessageQueue(); 
             msgQueue.Enqueue(message);
             ViewBag.Message = "Register succeed!";
             return View();
         }
 
-        public ActionResult UnRegister(string email)
+        public ActionResult UnRegister(string email, string domain)
         {
             if (email == null)
             {
@@ -36,7 +36,7 @@ namespace Sirius.WebEventReminder.Register.Mvc.Controllers
             else
             {
                 ViewBag.Unregister = true;
-                IMessage message = new CommonMessage { MessageBody = email };
+                IMessage message = new CommonMessage { MessageBody = email, Domain = domain };
                 IMessageQueue msgQueue = new MessageQueue();
                 msgQueue.Dequeue(message);
             }

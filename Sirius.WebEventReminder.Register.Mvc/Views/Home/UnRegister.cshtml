@@ -1,6 +1,8 @@
-﻿@{
+﻿@using Sirius.WebEventReminder;
+@{
     ViewBag.Title = "UnRegister";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Header = "Unregister Clubs";
 }
 
 <h2>UnRegister</h2>
@@ -14,7 +16,7 @@ else
     using (Html.BeginForm())
     {
         @Html.TextBox("email");
+        @Html.DropDownList("domain",DomainList.List.Select(item => new SelectListItem{Text = item, Value= item}));
         <input type="submit" value="Unregister" /> 
     } 
-    
 }

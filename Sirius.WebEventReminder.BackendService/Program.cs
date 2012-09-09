@@ -16,17 +16,19 @@ namespace Sirius.WebEventReminder.BackendService
         static void Main(string[] args)
         {
             IocContainer.Current.LoadConfiguration();
-            IEventListener listener = new SzForumGymEventListener();
-            IMessageQueueServer messageQueueServer = new MessageQueueServer();
+            
+            IMessageQueueServer gymMessageQueueServer = new MessageQueueServer(DomainList.Gym);
+            IMessageQueueServer badmintonMessageQueueServer = new MessageQueueServer(DomainList.Badminton);
+
             _notifier = new EmailNotifier();
-            messageQueueServer.ItemsEnqued += new Action<List<IMessage>>(messageQueueServer_ItemsEnqued);
-            IMessageQueue messageQueue = new MessageQueue();
-            CommonMessage message = new CommonMessage { MessageBody = "ariesyzhk@gmail.com" };
-            messageQueue.Enqueue(message);
+
+            gymMessageQueueServer.ItemsEnqued += new Action<List<IMessage>>(messageQueueServer_ItemsEnqued);
+
+            IEventListener listener = new SzForumGymEventListener();
             listener.Listen();
             listener.EventHapped += Listener_EventHapped;
             listener.EventHapped += _notifier.SendNotification;
-            messageQueueServer.Start();
+            gymMessageQueueServer.Start();
             Console.WriteLine("Press the Enter key to exit the program.");
             Console.ReadLine();
         }
