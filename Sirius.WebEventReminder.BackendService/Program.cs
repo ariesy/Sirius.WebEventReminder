@@ -11,14 +11,14 @@ namespace Sirius.WebEventReminder.BackendService
     class Program
     {
         private static IEventNotifier _notifier;
-        private static List<IMessageQueueServer> _msgQueueServers = new List<IMessageQueueServer>();
+        private static List<MessageQueueServer> _msgQueueServers = new List<MessageQueueServer>();
 
         static void Main(string[] args)
         {
             IocContainer.Current.LoadConfiguration();
             
-            IMessageQueueServer gymMessageQueueServer = new MessageQueueServer(DomainList.Gym);
-            IMessageQueueServer badmintonMessageQueueServer = new MessageQueueServer(DomainList.Badminton);
+            MessageQueueServer gymMessageQueueServer = new MessageQueueServer(DomainList.Gym);
+            MessageQueueServer badmintonMessageQueueServer = new MessageQueueServer(DomainList.Badminton);
             _msgQueueServers.Add(gymMessageQueueServer);
             _msgQueueServers.Add(badmintonMessageQueueServer);
 
