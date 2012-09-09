@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Net;
 using System.IO;
+using Sirius.Net.Mail;
 
 namespace Sirius.WebEventReminder
 {
@@ -28,26 +29,10 @@ namespace Sirius.WebEventReminder
                 msg.To.Add(address);
             }
 
-            StringWriter msgBodyWriter = new StringWriter();
-            msgBodyWriter.WriteLine(eventArgs.Message);
-            msgBodyWriter.WriteLine();
-            msgBodyWriter.WriteLine("--------------------------------");
-            msgBodyWriter.WriteLine("I'm glad that my service can help you.");
-            msgBodyWriter.WriteLine("If there's any question feel free to send me email: ariesyzhk@gmail.com");
-            msgBodyWriter.WriteLine("More interesting things can be found at my technique blog: http://kunzhu.co.cc");
-            msgBodyWriter.WriteLine("and my code repository: https://github.com/ariesy");
-
-            msg.Body = msgBodyWriter.ToString();
-            msg.ReplyToList.Add(new MailAddress("ariesyzhk@gmail.com","Kun Zhu"));
+            msg.Body = eventArgs.Message;
 
             msg.Subject = eventArgs.Message;
-            SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Host = "smtp.gmail.com";
-            smtpClient.Port = 587;
-            smtpClient.EnableSsl = true;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new NetworkCredential("dev@kunzhu.co.cc", "dev.public");
+            DevPublicSmtpClient smtpClient = new DevPublicSmtpClient();
             
             try
             {

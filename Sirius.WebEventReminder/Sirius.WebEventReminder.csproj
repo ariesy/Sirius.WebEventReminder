@@ -64,6 +64,10 @@
       <Project>{EDA71828-B087-478C-B5FB-E51087E72883}</Project>
       <Name>Sirius.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sirius.Framework\Sirius.Net\Sirius.Net.csproj">
+      <Project>{488862BE-F65D-440D-AB11-C69009449622}</Project>
+      <Name>Sirius.Net</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
