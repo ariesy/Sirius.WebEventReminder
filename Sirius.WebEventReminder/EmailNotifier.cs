@@ -12,7 +12,7 @@ namespace Sirius.WebEventReminder
     {
         private HashSet<string> _emailAddr = new HashSet<string>();
 
-        private string _fromAddr = "Kun.zhu@moodys.com";
+        private string _fromAddr = "dev@kunzhu.co.cc";
 
         public void SendNotification(object sender, EventHappenedEventArgs eventArgs)
         {
